@@ -6,7 +6,7 @@ import './App.css';
 class Post extends Component {
   render() {
     const myPosts = this.props.posts.map(p => {
-      return <div key={p.title}>
+      return <div={p.title}>
               <h1 className="Title">{p.title}</h1>
               <Author authors={p.authors} />
               <p className="Post-intro">
