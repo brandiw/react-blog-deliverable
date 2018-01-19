@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
-import Comment from './Comment.js';
-import Author from './Author.js';
+import Home from './Home.js';
+import Post from './posts/Post.js';
+import About from './About.js';
 import './App.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
-class Post extends Component {
+class App extends Component {
   render() {
-    const myPosts = this.props.posts.map(p => {
-      return <div={p.title}>
-              <h1 className="Title">{p.title}</h1>
-              <Author authors={p.authors} />
-              <p className="Post-intro">
-                {p.content}
-              </p>
-              <h2>Comments</h2>
-              <Comment comments={p.comments} />
-              <hr />
-            </div>
-    });
-
     return (
       <div className="Post">
         <header className="Post-header">
@@ -27,11 +16,33 @@ class Post extends Component {
             All the latest and greatest things from 65 million years ago.
           </p>
         </header>
-        {myPosts}
-        <em>Note, at this stage, we are only rendering ONE post with ONE comment!</em>
+        <Router>
+          <div>
+            <nav>
+              <Link to="/">Home</Link>&nbsp;
+              <Link to="/blog">Blog</Link>{' '}
+              <Link to="/about">About</Link>{' '}
+              <Link to="/movie">Movie</Link>{' '}
+              <Link to="/food">Food</Link>{' '}
+            </nav>
+            <Route path="/blog" component={
+                () => (<Post posts={this.props.posts} />
+            )}/>
+            <Route path="/about" component={About} />
+            <Route exact path="/" component={Home} />
+          </div>
+        </Router>
+        <hr />
+        <nav id="footer">
+          <a href="/">Home</a>
+          <a href="/main">Main Blog</a>
+          <a href="/about">About</a>
+          <a href="/movie">Favorite Movie</a>
+          <a href="/food">Favorite Food</a>
+        </nav>
       </div>
     );
   }
 }
 
-export default Post;
+export default App;

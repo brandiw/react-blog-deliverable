@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Post from './App';
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 var posts = [{
@@ -16,6 +16,6 @@ var posts = [{
   comments: ['Cool it', 'Who cares, bro', 'Triassic or nothing!']
 }];
 
-ReactDOM.render(<Post posts={posts} />, document.getElementById('root'));
+ReactDOM.render(<App posts={posts} />, document.getElementById('root'));
 registerServiceWorker();
 
